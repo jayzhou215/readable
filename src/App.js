@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import * as Api from './utils/Api'
 
 class App extends Component {
+
+  componentDidMount() {
+    Api.getCategories().then(data => (
+      console.log(data)
+    ))
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Hello, my readable</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
