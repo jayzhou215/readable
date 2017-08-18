@@ -5,7 +5,7 @@ import * as Api from './utils/Api'
 class App extends Component {
 
   componentDidMount() {
-    Api.getCategories().then(data => (
+    Api.fetchAllCategories().then(data => (
       console.log(data)
     ))
   }

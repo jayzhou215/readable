@@ -7,18 +7,18 @@ const headers = {
 
 // ---- category api ----
 
-export const getCategories = () =>
+export const fetchAllCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
 
-export const getCategoryPosts = (category) =>
+export const fetchCategoryPosts = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
 
 // ---- post api ----
 
-export const getPosts = () =>
+export const fetchPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
 
@@ -33,7 +33,7 @@ export const createPost = (body) =>
   }).then(res => res.json())
 
 
-export const getPostDetail = (postId) =>
+export const fetchPostDetail = (postId) =>
   fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
     .then(data => data)
@@ -74,7 +74,7 @@ export const deletePost = (postId) =>
   }).then(res => res.json())
 
 // ---- comment api ----
-export const getComments = (postId) =>
+export const fetchComments = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
 
@@ -96,7 +96,7 @@ export const createComment = (body) =>
   }).then(res => res.json())
 
 
-export const getCommentDetail = (commentId) =>
+export const fetchCommentDetail = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
     .then(res => res.json())
     .then(data => data)
