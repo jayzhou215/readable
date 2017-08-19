@@ -1,3 +1,6 @@
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
-// export const GET_
+export const ADD_POST = 'ADD_POST'
+export const VOTE_POST = 'VOTE_POST'
+export const UPDATE_POST = 'UPDATE_POST'
+export const DELETE_POST = 'DELETE_POST'
