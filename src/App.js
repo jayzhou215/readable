@@ -3,11 +3,16 @@ import './App.css';
 import * as Api from './utils/Api'
 import { connect } from 'react-redux'
 import { getAllCategory } from './category/actions'
+import CategoryList from './components/CategoryList'
 
 class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(getAllCategory())
+  }
+
+  jump = (path) => {
+    console.log(path)
   }
 
   render() {
@@ -17,19 +22,18 @@ class App extends Component {
           <h2>Hello, my readable</h2>
         </div>
 
-        <p className="App-intro">
-          {this.props.categories.categories && this.props.categories.categories[0].name}
-        </p>
+        <CategoryList categories={this.props.categories} jump={this.jump} ></CategoryList>
       </div>
     );
   }
 }
 
-  function mapStateToProps(state) {
-    const {categories, comments, posts} = state
-    return {
-      categories
-    }
+function mapStateToProps(state) {
+  const {categories, comments, posts} = state
+  return {
+    categories,
+    posts
   }
+}
 
 export default connect(mapStateToProps)(App);

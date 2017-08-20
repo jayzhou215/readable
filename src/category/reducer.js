@@ -1,12 +1,12 @@
 import { GET_ALL_CATEGORY } from './actions'
 
 export function categories(state = {}, action){
-  console.log(action.type)
   switch (action.type) {
     case GET_ALL_CATEGORY:
-      return {
-          categories:action.categories,
-      }
+      return action.categories.reduce((categories, category) => {
+        categories[category.name] = category.path
+        return categories
+      }, {})
     default:
       return state
   }

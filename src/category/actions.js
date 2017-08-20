@@ -11,6 +11,7 @@ function getAll(categories) {
 
 export function getAllCategory() {
   return dispatch => {
-    fetchAllCategories().then(data => dispatch(getAll(data)))
+    return  fetchAllCategories().then(data =>
+      dispatch(getAll(data)))
   }
 }
