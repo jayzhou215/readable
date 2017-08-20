@@ -1,5 +1,6 @@
 import React from 'react'
 import {trim} from '../utils/util'
+import {Link} from 'react-router-dom'
 
 function CategoryList({categories, jump}) {
   const hasCategroy = Object.keys(categories).length > 0
@@ -11,8 +12,8 @@ function CategoryList({categories, jump}) {
       <p>Categories</p>
       <ul className='category-list'>
         {Object.keys(categories).map((name) => (
-          <li key={name} onClick={()=> jump(categories[name])}>
-            <h3>{trim(name)}</h3>
+          <li key={name} >
+            <Link to={'/' + categories[name]} >{trim(name)}</Link>
           </li>
         ))}
       </ul>
