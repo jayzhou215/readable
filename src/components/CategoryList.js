@@ -2,7 +2,7 @@ import React from 'react'
 import {trim} from '../utils/util'
 import {Link} from 'react-router-dom'
 
-function CategoryList({categories, jump}) {
+function CategoryList({categories}) {
   const hasCategroy = Object.keys(categories).length > 0
   if (!hasCategroy) {
     return <p>no cagetory yet</p>
@@ -13,7 +13,7 @@ function CategoryList({categories, jump}) {
       <ul className='category-list'>
         {Object.keys(categories).map((name) => (
           <li key={name} >
-            <Link to={'/' + categories[name]} >{trim(name)}</Link>
+            <Link to={`/${categories[name]}`} >{trim(name)}</Link>
           </li>
         ))}
       </ul>
