@@ -20,9 +20,7 @@ class App extends Component {
         <Route exact path='/' render={()=>(
             <CategoryList categories={categories} ></CategoryList>
           )} />
-        {Object.values(categories).length>0 && Object.values(categories).map((path)=>(
-          <Route path={`/${path}`} component={CategoryView} />
-        ))}
+        <Route path={'/category/:category'} component={CategoryView} />
         <Route component={Error} />
       </Switch>
     );

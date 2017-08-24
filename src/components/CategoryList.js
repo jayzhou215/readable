@@ -13,7 +13,7 @@ function CategoryList({categories}) {
       <ul className='category-list'>
         {Object.keys(categories).map((name) => (
           <li key={name} >
-            <Link to={`/${categories[name]}`} >{trim(name)}</Link>
+            <Link to={`/category/${categories[name]}`} >{trim(name)}</Link>
           </li>
         ))}
       </ul>

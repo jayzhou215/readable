@@ -5,7 +5,8 @@ function CategoryView(props) {
   return (
     <div>
       <Link to='/' className='close-search'/>
-      {props.location.pathname}
+      {console.log(props)}
+      {props.match.params.category}
     </div>
   )
 }
