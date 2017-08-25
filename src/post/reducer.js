@@ -1,9 +1,9 @@
 import * as ACTIONS from './actions'
 
-export function posts(state={}, action){
+export function posts(state=[], action){
   switch (action.type) {
     case ACTIONS.GET_ALL_POSTS:
-      return {}
+      return []
     default:
       return state
   }

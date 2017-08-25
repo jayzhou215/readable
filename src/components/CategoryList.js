@@ -1,8 +1,8 @@
 import React from 'react'
-import {trim} from '../utils/util'
+import {trim} from '../utils/Util'
 import {Link} from 'react-router-dom'
 
-function CategoryList({categories}) {
+function CategoryList({categories, useLink}) {
   const hasCategroy = Object.keys(categories).length > 0
   if (!hasCategroy) {
     return <p>no cagetory yet</p>
@@ -13,7 +13,8 @@ function CategoryList({categories}) {
       <ul className='category-list'>
         {Object.keys(categories).map((name) => (
           <li key={name} >
-            <Link to={`/category/${categories[name]}`} >{trim(name)}</Link>
+            {useLink && (<Link to={`/category/${categories[name]}`} >{trim(name)}</Link>)}
+            {!useLink && trim(name)}
           </li>
         ))}
       </ul>

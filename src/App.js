@@ -6,6 +6,7 @@ import CategoryList from './components/CategoryList'
 import {Switch, Route, withRouter} from 'react-router-dom'
 import Error from './components/Error'
 import CategoryView from './components/CategoryView'
+import PostList from './components/PostList'
 
 class App extends Component {
 
@@ -14,13 +15,16 @@ class App extends Component {
   }
 
   render() {
-    const {categories} = this.props
+    const {categories, posts} = this.props
     return (
       <Switch>
         <Route exact path='/' render={()=>(
-            <CategoryList categories={categories} ></CategoryList>
+            <div>
+              <CategoryList categories={categories} useLink={true}></CategoryList>
+              <PostList posts={posts}></PostList>
+            </div>
           )} />
-        <Route path={'/category/:category'} component={CategoryView} />
+        <Route path={'/category/:categoryName'} component={CategoryView} />
         <Route component={Error} />
       </Switch>
     );
