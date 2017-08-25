@@ -1,9 +1,12 @@
 const api = 'http://localhost:5001'
 
+export const owner = 'Jay'
+
 const headers = {
   'Accept': 'application/json',
-  'Authorization': 'Jay'
+  'Authorization': owner
 }
+
 
 // ---- category api ----
 

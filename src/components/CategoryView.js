@@ -14,7 +14,7 @@ function CategoryView(props) {
   })
   return (
     <div>
-      <Link to='/' className='close-category'/>
+      <Link to='/' className='close'/>
       <div>
         <CategoryList categories={curCategories} useLink={false}></CategoryList>
         <PostList posts={curPosts}></PostList>
