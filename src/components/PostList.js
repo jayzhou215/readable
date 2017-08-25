@@ -6,6 +6,9 @@ function PostList ({posts}) {
   if (!hasPost) {
     return <p>no post yet</p>
   }
+  posts.sort((postA, postB) => {
+    return postA.voteScore - postB.voteScore
+  })
   return (
     <div>
       <p>Posts</p>
