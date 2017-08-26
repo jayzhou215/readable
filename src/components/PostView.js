@@ -1,9 +1,11 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { deletePost } from '../post/actions'
 
 function PostView (props) {
   const postId = props.match.params.postId
+  const histroy = props.history
   const newPosts = props.posts.filter((post) => {
     return post.id === postId
   })
@@ -25,6 +27,7 @@ function PostView (props) {
       <p>{'Vote score: ' + post.voteScore}</p>
       <p>{'Author: ' + post.author}</p>
       <p><Link to={`/post/${post.id}/edit`}>Edit</Link></p>
+      <button onClick={()=>props.dispatch(deletePost(post.id, histroy))}>Delete post!</button>
     </div>
   )
 }

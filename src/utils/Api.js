@@ -66,20 +66,18 @@ export const updatePost = (post) => {
 }
 
 
-export const deletePost = (postId) =>
-  fetch(`${api}/posts/${postId}`, {
+export const deletePost = (postId) =>{
+  return fetch(`${api}/posts/${postId}`, {
     method: 'DELETE',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    }
-  }).then(res => res.json())
+    headers
+  })
+}
 
 // ---- comment api ----
-export const fetchComments = (postId) =>
-  fetch(`${api}/posts/${postId}/comments`, { headers })
+export const fetchComments = (postId) =>{
+  return fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
-
+}
 /** body
  * id: Any unique ID. As with posts, UUID is probably the best here.
  * timestamp: timestamp. Get this however you want.
@@ -87,8 +85,8 @@ export const fetchComments = (postId) =>
  * owner: String
  * parentId: Should match a post id in the database.
 **/
-export const createComment = (body) =>
-  fetch(`${api}/comments`, {
+export const createComment = (body) =>{
+  return fetch(`${api}/comments`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -96,12 +94,13 @@ export const createComment = (body) =>
     },
     body: JSON.stringify(body)
   }).then(res => res.json())
+}
 
-
-export const fetchCommentDetail = (commentId) =>
-  fetch(`${api}/comments/${commentId}`, { headers })
+export const fetchCommentDetail = (commentId) =>{
+  return fetch(`${api}/comments/${commentId}`, { headers })
     .then(res => res.json())
     .then(data => data)
+}
 
 export const updateComment = (commentId, timestamp, detail) =>{
   const requestBody = {timestamp, body:detail}
@@ -115,11 +114,12 @@ export const updateComment = (commentId, timestamp, detail) =>{
   }).then(res => res.json())
 }
 
-export const deleteComment = (commentId) =>
-  fetch(`${api}/comments/${commentId}`, {
+export const deleteComment = (commentId) =>{
+  return fetch(`${api}/comments/${commentId}`, {
     method: 'DELETE',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     }
   }).then(res => res.json())
+}

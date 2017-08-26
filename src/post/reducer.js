@@ -10,7 +10,7 @@ function cloneAndSort(state, sortFunc) {
 export function posts(state=[], action){
   switch (action.type) {
     case ACTIONS.GET_ALL_POSTS:
-      return action.posts
+      return action.posts.filter(post=> post.deleted === false)
     case ACTIONS.ADD_POST:
       return state.concat(action.post)
     case ACTIONS.UPDATE_POST:
@@ -26,6 +26,11 @@ export function posts(state=[], action){
       return cloneAndSort(state, (postA, postB)=> {return postA.voteScore - postB.voteScore})
     case ACTIONS.SORT_DEC_BY_VOTESCORE:
       return cloneAndSort(state, (postA, postB)=> {return postB.voteScore - postA.voteScore})
+
+    case ACTIONS.DELETE_POST:
+      return state.filter((post) => {
+        return post.id !== action.postId
+      })
     default:
       return state
   }

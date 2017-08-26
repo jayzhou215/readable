@@ -34,6 +34,13 @@ function updatePostSuccess(post) {
   }
 }
 
+function deletePostSuccess(postId) {
+  return {
+    type : DELETE_POST,
+    postId
+  }
+}
+
 export function sortDecByVotescore() {
   return {
     type : SORT_DEC_BY_VOTESCORE
@@ -86,6 +93,17 @@ export function updatePost(post, histroy) {
     API.updatePost(post).then(data=>{
       dispatch(updatePostSuccess(data))
       histroy.goBack()
+    })
+  }
+}
+
+export function deletePost(postId, history) {
+  return dispatch => {
+    API.deletePost(postId).then( (data) =>{
+      if (data.status === 200) {
+        dispatch(deletePostSuccess(postId))
+        history.goBack()
+      }
     })
   }
 }
