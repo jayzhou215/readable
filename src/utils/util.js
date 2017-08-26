@@ -8,7 +8,7 @@ export function trim (str) {
 }
 
 export function createUniquePostId() {
-  return 'post-' + randomize('*', 10)
+  return randomize('aA0', 20)
 }
 
 export function createUniqueKey() {

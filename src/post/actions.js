@@ -1,4 +1,4 @@
-import {createPost, fetchPosts, owner} from '../utils/Api'
+import * as API from '../utils/Api'
 import { createUniquePostId } from '../utils/Util'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
@@ -23,6 +23,13 @@ function getPostsSuccess(posts){
 function addPostSuccess(post){
   return {
     type : ADD_POST,
+    post
+  }
+}
+
+function updatePostSuccess(post) {
+  return {
+    type : UPDATE_POST,
     post
   }
 }
@@ -54,7 +61,7 @@ export function sortAecByTimestamp() {
 
 export function getAllPosts() {
   return dispatch => {
-    fetchPosts().then(data=>{
+    API.fetchPosts().then(data=>{
       dispatch(getPostsSuccess(data))
       dispatch(sortDecByVotescore())
     })
@@ -63,12 +70,22 @@ export function getAllPosts() {
 
 export function addPost(post, histroy) {
   post['timestamp'] = Date.now()
-  post['owner'] = owner
+  post['author'] = API.owner
   post['id'] = createUniquePostId()
   return dispatch => {
-    createPost(post).then((data) => {
+    API.createPost(post).then((data) => {
       dispatch(addPostSuccess(data))
       histroy.push('/')
+    })
+  }
+}
+
+export function updatePost(post, histroy) {
+  post['timestamp'] = Date.now()
+  return dispatch => {
+    API.updatePost(post).then(data=>{
+      dispatch(updatePostSuccess(data))
+      histroy.goBack()
     })
   }
 }

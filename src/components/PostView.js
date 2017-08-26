@@ -24,6 +24,7 @@ function PostView (props) {
       <p>{'timestamp: ' + new Date(post.timestamp).toUTCString()}</p>
       <p>{'Vote score: ' + post.voteScore}</p>
       <p>{'Author: ' + post.author}</p>
+      <p><Link to={`/post/${post.id}/edit`}>Edit</Link></p>
     </div>
   )
 }

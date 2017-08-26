@@ -13,6 +13,11 @@ export function posts(state=[], action){
       return action.posts
     case ACTIONS.ADD_POST:
       return state.concat(action.post)
+    case ACTIONS.UPDATE_POST:
+      return state.map((post) => {
+        const curPost = action.post
+        return curPost.id === post.id ? curPost : post
+      })
     case ACTIONS.SORT_AEC_BY_TIMESTAMP:
       return cloneAndSort(state, (postA, postB)=> {return postA.timestamp - postB.timestamp})
     case ACTIONS.SORT_DEC_BY_TIMESTAMP:

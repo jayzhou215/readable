@@ -27,16 +27,17 @@ class App extends Component {
               <div>
                 <CategoryList categories={categories} useLink={true}></CategoryList>
                 <PostList posts={posts}></PostList>
+                <div className="add-post">
+                  <Link to='/post/create' />
+                </div>
               </div>
             )} />
           <Route path={'/category/:categoryName'} component={CategoryView} />
           <Route exact path='/post/create' component={CreatePostView} />
-          <Route path={'/post/:postId'} component={PostView} />
+          <Route exact path={'/post/:postId'} component={PostView} />
+          <Route path={'/post/:postId/edit'} component={CreatePostView} />
           <Route component={Error} />
         </Switch>
-        <div className="add-post">
-          <Link to='/post/create' />
-        </div>
       </div>
     );
   }

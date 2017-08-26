@@ -1,36 +1,59 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addPost} from '../post/actions'
+import {addPost, updatePost} from '../post/actions'
 import {createUniqueKey, serialize} from '../utils/Util'
 
 class CreatePostView extends Component {
 
+  getCurPost() {
+    const postId = this.props.match.params.postId
+    if (postId !== undefined) {
+      const newPosts = this.props.posts.filter((post) => {
+        return post.id === postId
+      })
+      if (newPosts.length > 0) {
+        return newPosts[0]
+      }
+    }
+    return undefined
+  }
+
   handleEvent = (e) => {
     e.preventDefault()
     const post = serialize(e.target)
-    this.props.dispatch(addPost(post, this.props.history))
+    const curPost = this.getCurPost()
+    if (curPost) {
+      curPost.title = post.title
+      curPost.body = post.body
+      curPost.category = post.category
+      this.props.dispatch(updatePost(curPost, this.props.history))
+    } else {
+      this.props.dispatch(addPost(post, this.props.history))
+    }
   }
 
   render() {
-    const {categories, dispatch} = this.props
+    const {categories, posts} = this.props
+    const postId = this.props.match.params.postId
+    const post = this.getCurPost()
     return (
       <div>
         <Link to='/' className='close'/>
         <form onSubmit={this.handleEvent} className='create-post-form'>
             <div className='create-post-details'>
-              <input type='text' name='title' placeholder='title'/>
+              <input type='text' name='title' placeholder='title' defaultValue={post && post.title}/>
               <br/>
-              <input type='text' name='body' placeholder='body'/>
+              <input type='text' name='body' placeholder='body' defaultValue={post && post.body}/>
               <br/>
-              <select name='category'>
+              <select name='category' defaultValue={post ? post.category : Object.keys(categories)[0] }>
                 {
                   Object.keys(categories).length >0 && Object.keys(categories).map((name) => (
                     <option value={name} key={name+ createUniqueKey()}>{name}</option>
                   ))
                 }
               </select>
-              <button>Create Post</button>
+              <button>{post ? 'Update Post' : 'Create Post'}</button>
             </div>
           </form>
       </div>
@@ -41,9 +64,10 @@ class CreatePostView extends Component {
 }
 
 function mapStateToProps(state){
-  const {categories} = state
+  const {categories, posts} = state
   return {
-    categories
+    categories,
+    posts
   }
 }
 

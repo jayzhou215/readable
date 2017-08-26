@@ -54,15 +54,14 @@ export const votePost = (postId, isUp) => {
 }
 
 
-export const updatePost = (postId, title, detail) => {
-  const requestBody = {title, body:detail}
-  return fetch(`${api}/posts/${postId}`, {
+export const updatePost = (post) => {
+  return fetch(`${api}/posts/${post.id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(requestBody)
+    body: JSON.stringify(post)
   }).then(res => res.json())
 }
 
