@@ -9,6 +9,7 @@ import Error from './components/Error'
 import CategoryView from './components/CategoryView'
 import PostList from './components/PostList'
 import CreatePostView from './components/CreatePostView'
+import PostView from './components/PostView'
 
 class App extends Component {
 
@@ -29,7 +30,8 @@ class App extends Component {
               </div>
             )} />
           <Route path={'/category/:categoryName'} component={CategoryView} />
-          <Route path='/post/create' component={CreatePostView} />
+          <Route exact path='/post/create' component={CreatePostView} />
+          <Route path={'/post/:postId'} component={PostView} />
           <Route component={Error} />
         </Switch>
         <div className="add-post">
