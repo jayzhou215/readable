@@ -6,6 +6,15 @@
   font-size: large;
 }
 
+.inner {
+  overflow: hidden;
+  width: 2000px;
+}
+
+.child {
+  float: left;
+}
+
 .close {
   display: block;
   top: 20px;
@@ -37,4 +46,69 @@
   background-size: 28px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   font-size: 0;
+}
+
+.btn-vote-up {
+  width: 50px;
+  height: 50px;
+  border-color: #91DC5A;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  background: none;
+  background-image: url('./icons/heart-plus.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  float: left;
+}
+
+.btn-vote-down {
+  width: 50px;
+  height: 50px;
+  border-color: #91DC5A;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  background: none;
+  background-image: url('./icons/heart-minus.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  float: left;
+}
+
+.btn-delete {
+  width: 50px;
+  height: 50px;
+  border-color: #91DC5A;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  background: none;
+  background-image: url('./icons/rubbish-bin.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
+  float: left;
+}
+
+.btn-edit {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.btn-edit a {
+  width: 47px;
+  height: 47px;
+  display: block;
+  border-color: #91DC5A;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 2px;
+  background-image: url('./icons/edit.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 28px;
 }

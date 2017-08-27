@@ -65,6 +65,12 @@ export function sortAecByTimestamp() {
   }
 }
 
+function votePostSuccess(post) {
+  return {
+    type : VOTE_POST,
+    post
+  }
+}
 
 export function getAllPosts() {
   return dispatch => {
@@ -104,6 +110,14 @@ export function deletePost(postId, history) {
         dispatch(deletePostSuccess(postId))
         history.goBack()
       }
+    })
+  }
+}
+
+export function votePost(postId, isUp) {
+  return dispatch => {
+    API.votePost(postId, isUp).then(data => {
+      dispatch(votePostSuccess(data))
     })
   }
 }

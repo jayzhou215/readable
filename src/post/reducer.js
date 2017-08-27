@@ -31,6 +31,13 @@ export function posts(state=[], action){
       return state.filter((post) => {
         return post.id !== action.postId
       })
+    case ACTIONS.VOTE_POST:
+      return state.map(post => {
+        if (post.id === action.post.id) {
+          return action.post
+        }
+        return post
+      })
     default:
       return state
   }

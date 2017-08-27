@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost } from '../post/actions'
+import { deletePost, votePost } from '../post/actions'
 
 function PostView (props) {
   const postId = props.match.params.postId
@@ -26,8 +26,12 @@ function PostView (props) {
       <p>{'timestamp: ' + new Date(post.timestamp).toUTCString()}</p>
       <p>{'Vote score: ' + post.voteScore}</p>
       <p>{'Author: ' + post.author}</p>
-      <p><Link to={`/post/${post.id}/edit`}>Edit</Link></p>
-      <button onClick={()=>props.dispatch(deletePost(post.id, histroy))}>Delete post!</button>
+      <div className='inner'>
+        <div className='btn-edit'><Link to={`/post/${post.id}/edit`}></Link></div>
+        <button className='btn-delete' onClick={()=>props.dispatch(deletePost(post.id, histroy))}></button>
+        <button className='btn-vote-up' onClick={()=>props.dispatch(votePost(post.id, true))}></button>
+        <button className='btn-vote-down' onClick={()=>props.dispatch(votePost(post.id, false))}></button>
+      </div>
     </div>
   )
 }
