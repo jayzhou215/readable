@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { deletePost, votePost } from '../post/actions'
+import { addComment } from '../comment/actions'
+import { createUniqueKey, serialize } from '../utils/Util'
 
 function PostView (props) {
   const postId = props.match.params.postId
@@ -18,6 +20,14 @@ function PostView (props) {
     )
   }
   const post = newPosts[0]
+  const handleEvent = (event) => {
+    event.preventDefault()
+    const comment = serialize(event.target)
+    if (comment.body) {
+      props.dispatch(addComment(post.id, comment.body))
+    }
+  }
+  const comments = props.comments.filter(comment => comment.parentId === post.id)
   return (
     <div>
       <Link to='/' className='close'/>
@@ -32,14 +42,28 @@ function PostView (props) {
         <button className='btn-vote-up' onClick={()=>props.dispatch(votePost(post.id, true))}></button>
         <button className='btn-vote-down' onClick={()=>props.dispatch(votePost(post.id, false))}></button>
       </div>
+      <form onSubmit={handleEvent}>
+        <input type='text' name='body' placeholder='input an comment'/>
+        <button>submit comment</button>
+      </form>
+
+      <ul className='comment-list'>
+        {comments && comments.map((comment) => (
+          <li key={comment.id + createUniqueKey()} >
+            <p>{'body:' + comment.body}</p>
+            <p>{'author:' + comment.author}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
 
 function mapStateToProps(state) {
-  const {posts} = state
+  const {posts, comments} = state
   return {
-    posts
+    posts,
+    comments
   }
 }
 

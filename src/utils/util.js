@@ -18,3 +18,7 @@ export function createUniqueKey() {
 export function serialize(target) {
   return serializeForm(target, { hash: true })
 }
+
+export function createUniqueCommentId() {
+  return randomize('aA0', 20)
+}
