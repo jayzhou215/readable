@@ -38,6 +38,7 @@ class PostView extends Component {
       const comment = serialize(event.target)
       if (comment.body) {
         dispatch(addComment(post.id, comment.body))
+        this.refs.body.value = ''
       }
     }
     const comments = this.props.comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
@@ -56,7 +57,7 @@ class PostView extends Component {
           <button className='btn-vote-down' onClick={()=>dispatch(votePost(post.id, false))}></button>
         </div>
         <form onSubmit={handleEvent}>
-          <input type='text' name='body' placeholder='input an comment'/>
+          <input type='text' name='body' placeholder='input an comment' ref='body'/>
           <button>submit comment</button>
         </form>
         sortBy:
@@ -80,13 +81,13 @@ class PostView extends Component {
                     <input type='text' name='body' placeholder='input an comment' defaultValue={comment.body}/>
                     <button>update comment</button>
                   </form>
-              </li>
-              )
+              </li>)
             } else {
               return this.createCommentView(comment)
             }
           })
-          }
+         }
+         {comments.length === 0 && ('no comment yet')}
         </ol>
       </div>
     )
