@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux'
+
 import { getAllCategory } from './category/actions'
 import { getAllPosts } from './post/actions'
+import { getAllComments } from './comment/actions'
+
 import CategoryList from './components/CategoryList'
 import {Switch, Route, withRouter, Link} from 'react-router-dom'
 import Error from './components/Error'

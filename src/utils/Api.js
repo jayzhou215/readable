@@ -114,12 +114,21 @@ export const updateComment = (commentId, timestamp, detail) =>{
   }).then(res => res.json())
 }
 
-export const deleteComment = (commentId) =>{
+export const voteComment = (commentId, isUp) =>{
+  const body = {option: isUp ? 'upVote':'downVote'}
   return fetch(`${api}/comments/${commentId}`, {
-    method: 'DELETE',
+    method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify(body)
   }).then(res => res.json())
+}
+
+export const deleteComment = (commentId) =>{
+  return fetch(`${api}/comments/${commentId}`, {
+    method: 'DELETE',
+    headers
+  })
 }

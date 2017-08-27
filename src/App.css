@@ -143,3 +143,14 @@ div {
   background-position: center;
   background-size: 28px;
 }
+
+.comment-list {
+    background: #ff9999;
+    padding: 20px;
+}
+
+.comment-item {
+    background: #ffe5e5;
+    padding: 5px;
+    margin-left: 35px;
+}
