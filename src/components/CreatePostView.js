@@ -34,12 +34,12 @@ class CreatePostView extends Component {
   }
 
   render() {
-    const {categories, posts} = this.props
+    const {categories, posts, history} = this.props
     const postId = this.props.match.params.postId
     const post = this.getCurPost()
     return (
       <div>
-        <Link to={post ? `/post/${post.id}` : '/'} className='close'/>
+        <a onClick={() => history.goBack()} className='close'/>
         <form onSubmit={this.handleEvent} className='create-post-form'>
             <div className='create-post-details'>
               <input type='text' name='title' placeholder='title' defaultValue={post && post.title}/>

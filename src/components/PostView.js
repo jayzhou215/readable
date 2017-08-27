@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { deletePost, votePost } from '../post/actions'
 import { addComment, getComments, deleteComment, voteComment, sortCommentByVoteScore, sortCommentByTimestamp, onEditComment, updateComment } from '../comment/actions'
 import { createUniqueKey, serialize } from '../utils/Util'
+import SimplePost from './SimplePost'
 
 class PostView extends Component {
 
@@ -19,7 +19,7 @@ class PostView extends Component {
   }
 
   render() {
-    const {match, histroy, dispatch, posts, commentSort, commentOnEdit} = this.props
+    const {match, history, dispatch, posts, commentSort, commentOnEdit} = this.props
     const postId = match.params.postId
     const newPosts = posts.filter((post) => {
       return post.id === postId
@@ -44,18 +44,8 @@ class PostView extends Component {
     const comments = this.props.comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
     return (
       <div>
-        <Link to='/' className='close'/>
-        <p>{'Title: ' + post.title}</p>
-        <p>{'Body: ' + post.body}</p>
-        <p>{'timestamp: ' + new Date(post.timestamp).toLocaleString()}</p>
-        <p>{'Vote score: ' + post.voteScore}</p>
-        <p>{'Author: ' + post.author}</p>
-        <div className='inner'>
-          <Link to={`/post/${post.id}/edit`}><button className='btn-edit'></button></Link>
-          <button className='btn-delete' onClick={()=>dispatch(deletePost(post.id, histroy))}></button>
-          <button className='btn-vote-up' onClick={()=>dispatch(votePost(post.id, true))}></button>
-          <button className='btn-vote-down' onClick={()=>dispatch(votePost(post.id, false))}></button>
-        </div>
+        <a onClick={() => history.goBack()}  className='close'/>
+        <SimplePost post={post}/>
         <form onSubmit={handleEvent}>
           <input type='text' name='body' placeholder='input an comment' ref='body'/>
           <button>submit comment</button>

@@ -3,6 +3,7 @@ import { trim, createUniqueKey } from '../utils/Util'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { sortDecByVotescore, sortAecByVotescore, sortDecByTimestamp, sortAecByTimestamp } from '../post/actions'
+import SimplePost from './SimplePost'
 
 class PostList extends Component {
 
@@ -31,7 +32,7 @@ class PostList extends Component {
         <ul className='post-list'>
           {posts.map((post) => (
             <li key={post.id + createUniqueKey()} >
-              <Link to={`/post/${post.id}`}>{post.title}</Link>
+              <Link to={`/post/${post.id}`}><SimplePost post={post}/></Link>
             </li>
           ))}
         </ul>
