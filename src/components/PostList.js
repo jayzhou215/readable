@@ -31,7 +31,7 @@ class PostList extends Component {
         <ul className='post-list'>
           {posts.map((post) => (
             <li key={post.id + createUniqueKey()} >
-              <Link to={`/post/${post.id}`}> <p>{post.title}</p></Link>
+              <Link to={`/post/${post.id}`}>{post.title}</Link>
             </li>
           ))}
         </ul>

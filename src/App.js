@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     const {categories, posts} = this.props
     return (
-      <div>
+      <div className='App'>
         <Switch>
           <Route exact path='/' render={()=>(
               <div>
