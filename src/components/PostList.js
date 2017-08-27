@@ -32,7 +32,7 @@ class PostList extends Component {
         <ul className='post-list'>
           {posts.map((post) => (
             <li key={post.id + createUniqueKey()} >
-              <Link to={`/post/${post.id}`}>To detail</Link>
+              <Link to={`/${post.category}/${post.id}`}>To detail</Link>
               <SimplePost post={post} fromList={true}/>
             </li>
           ))}
