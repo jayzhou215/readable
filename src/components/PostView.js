@@ -27,7 +27,7 @@ function PostView (props) {
       <p>{'Vote score: ' + post.voteScore}</p>
       <p>{'Author: ' + post.author}</p>
       <div className='inner'>
-        <div className='btn-edit'><Link to={`/post/${post.id}/edit`}></Link></div>
+        <Link to={`/post/${post.id}/edit`}><button className='btn-edit'></button></Link>
         <button className='btn-delete' onClick={()=>props.dispatch(deletePost(post.id, histroy))}></button>
         <button className='btn-vote-up' onClick={()=>props.dispatch(votePost(post.id, true))}></button>
         <button className='btn-vote-down' onClick={()=>props.dispatch(votePost(post.id, false))}></button>

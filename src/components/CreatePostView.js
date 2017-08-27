@@ -39,7 +39,7 @@ class CreatePostView extends Component {
     const post = this.getCurPost()
     return (
       <div>
-        <Link to='/' className='close'/>
+        <Link to={post ? `/post/${post.id}` : '/'} className='close'/>
         <form onSubmit={this.handleEvent} className='create-post-form'>
             <div className='create-post-details'>
               <input type='text' name='title' placeholder='title' defaultValue={post && post.title}/>
