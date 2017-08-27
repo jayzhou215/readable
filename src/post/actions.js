@@ -1,5 +1,6 @@
 import * as API from '../utils/Api'
 import { createUniquePostId } from '../utils/Util'
+import { getComments } from '../comment/actions'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS'
@@ -77,6 +78,9 @@ export function getAllPosts() {
     API.fetchPosts().then(data=>{
       dispatch(getPostsSuccess(data))
       dispatch(sortDecByVotescore())
+      data.map(post=>{
+        dispatch(getComments(post.id))
+      })
     })
   }
 }

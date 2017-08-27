@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addComment, getComments, deleteComment, voteComment, sortCommentByVoteScore, sortCommentByTimestamp, onEditComment, updateComment } from '../comment/actions'
-import { createUniqueKey, serialize } from '../utils/Util'
+import { createUniqueKey, serialize, filterDeletedPostComments } from '../utils/Util'
 import SimplePost from './SimplePost'
 
 class PostView extends Component {
@@ -41,7 +41,7 @@ class PostView extends Component {
         this.refs.body.value = ''
       }
     }
-    const comments = this.props.comments.filter(comment => comment.parentId === post.id && !comment.deleted && !comment.parentDeleted)
+    const comments = filterDeletedPostComments(post.id, this.props.comments)
     return (
       <div>
         <a onClick={() => history.goBack()}  className='close'/>

@@ -1,10 +1,17 @@
 import * as ACTIONS from './actions'
-import {DELETE_POST} from '../post/actions'
+import {DELETE_POST, GET_ALL_POSTS} from '../post/actions'
 
 export function comments (state=[], action) {
   switch (action.type) {
     case ACTIONS.GET_POST_COMMENTS:
-      return state.concat(action.comments)
+      var newState = []
+      newState = newState.concat(state)
+      action.comments.map(comment => {
+        if (!contains(newState, comment)) {
+          newState = newState.concat(comment)
+        }
+      })
+      return newState
     case ACTIONS.ADD_COMMENT:
       return state.concat(action.comment)
     case DELETE_POST:
@@ -63,4 +70,13 @@ export function commentOnEdit (state = {}, action) {
     default:
       return state
   }
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i].id === obj.id) {
+            return true;
+        }
+    }
+    return false;
 }

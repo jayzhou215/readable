@@ -22,3 +22,7 @@ export function serialize(target) {
 export function createUniqueCommentId() {
   return randomize('aA0', 20)
 }
+
+export function filterDeletedPostComments(postId, comments) {
+  return comments.filter(comment => comment.parentId === postId && !comment.deleted && !comment.parentDeleted)
+}
