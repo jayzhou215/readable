@@ -1,6 +1,6 @@
 import {categories} from './category/reducer'
 import {posts, postSort} from './post/reducer'
-import {comments, commentSort} from './comment/reducer'
+import {comments, commentSort, commentOnEdit} from './comment/reducer'
 
 import { combineReducers } from 'redux'
 
@@ -9,5 +9,6 @@ export default combineReducers({
   comments,
   posts,
   postSort,
-  commentSort
+  commentSort,
+  commentOnEdit
 })

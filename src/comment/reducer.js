@@ -33,6 +33,13 @@ export function comments (state=[], action) {
       return state.sort((commentA, commentB) => commentB.timestamp - commentA.timestamp)
     case ACTIONS.SORT_COMMENT_BY_VOTE_SCORE:
       return state.sort((commentA, commentB) => commentB.voteScore - commentA.voteScore)
+    case ACTIONS.UPDATE_COMMENT:
+      return state.map(comment => {
+        if (comment.id === action.comment.id) {
+          return action.comment
+        }
+        return comment
+      })
     default:
       return state
   }
@@ -47,4 +54,13 @@ export function commentSort(state = {'sort':'vote_score'}, action) {
       default:
         return state
     }
+}
+
+export function commentOnEdit (state = {}, action) {
+  switch (action.type) {
+    case ACTIONS.ON_EDIT_COMMENT:
+      return {'commentId' : action.commentId}
+    default:
+      return state
+  }
 }

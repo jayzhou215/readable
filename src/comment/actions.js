@@ -9,6 +9,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const SORT_COMMENT_BY_VOTE_SCORE = 'SORT_COMMENT_BY_VOTE_SCORE'
 export const SORT_COMMENT_BY_TIMESTAMP = 'SORT_COMMENT_BY_TIMESTAMP'
+export const ON_EDIT_COMMENT = 'ON_EDIT_COMMENT'
 
 function addCommentSuccess(comment) {
   return {
@@ -78,5 +79,24 @@ export function sortCommentByTimestamp() {
 export function sortCommentByVoteScore() {
   return {
     type : SORT_COMMENT_BY_VOTE_SCORE
+  }
+}
+
+export function onEditComment(commentId) {
+  return {
+    type : ON_EDIT_COMMENT,
+    commentId
+  }
+}
+
+export function updateComment(comment, body) {
+  return dispatch => {
+    API.updateComment(comment.id, Date.now(), body).then(comment => {
+      dispatch({
+        type : UPDATE_COMMENT,
+        comment
+      })
+      dispatch(onEditComment(''))
+    })
   }
 }

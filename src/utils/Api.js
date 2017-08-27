@@ -103,7 +103,7 @@ export const fetchCommentDetail = (commentId) =>{
 }
 
 export const updateComment = (commentId, timestamp, detail) =>{
-  const requestBody = {timestamp, body:detail}
+  const requestBody = {'timestamp' : timestamp, 'body' : detail}
   return fetch(`${api}/comments/${commentId}`, {
     method: 'PUT',
     headers: {
