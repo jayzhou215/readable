@@ -6,9 +6,10 @@ This is Jay's homework project on udacity react class, which is a content and co
 * `cd reactnd-project-readable-starter`
 * install server dependencies `npm install`
 * run the server `node server`
-* clone this project
+* clone this project `git@github.com:jayzhou215/readable.git`
+* `cd readable`
 * install dependencies `npm install`
-* run this project `yarn start` or `npm start`
+* run this project `npm start`
 
 ## About Readable
 Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
