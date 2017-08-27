@@ -17,7 +17,7 @@ function SimplePost({post, comments, fromList, dispatch, history}) {
       { fromList && <p>{'comments number: ' + commentNumber}</p>}
       <div className='inner'>
         <Link to={`/post/${post.id}/edit`}><button className='btn-edit'></button></Link>
-        <button className='btn-delete' onClick={()=>dispatch(deletePost(post.id, history))}></button>
+        <button className='btn-delete' onClick={()=>dispatch(deletePost(post.id, fromList?undefined: history))}></button>
         <button className='btn-vote-up' onClick={()=>dispatch(votePost(post.id, true))}></button>
         <button className='btn-vote-down' onClick={()=>dispatch(votePost(post.id, false))}></button>
       </div>
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(SimplePost)
+export default withRouter(connect(mapStateToProps)(SimplePost))

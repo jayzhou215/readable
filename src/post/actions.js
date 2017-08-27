@@ -92,7 +92,7 @@ export function addPost(post, histroy) {
   return dispatch => {
     API.createPost(post).then((data) => {
       dispatch(addPostSuccess(data))
-      histroy.push('/')
+      histroy.goBack()
     })
   }
 }
@@ -112,7 +112,9 @@ export function deletePost(postId, history) {
     API.deletePost(postId).then( (data) =>{
       if (data.status === 200) {
         dispatch(deletePostSuccess(postId))
-        history.goBack()
+        if (history) {
+          history.goBack()
+        }
       }
     })
   }

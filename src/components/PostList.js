@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { trim, createUniqueKey } from '../utils/Util'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { sortDecByVotescore, sortAecByVotescore, sortDecByTimestamp, sortAecByTimestamp } from '../post/actions'
 import SimplePost from './SimplePost'
@@ -49,4 +49,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(PostList)
+export default withRouter(connect(mapStateToProps)(PostList))

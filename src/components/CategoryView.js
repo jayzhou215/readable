@@ -19,6 +19,9 @@ function CategoryView(props) {
         <CategoryList categories={curCategories} useLink={false}></CategoryList>
         <PostList posts={curPosts}></PostList>
       </div>
+      <div className="add-post">
+        <Link to='/post/create' />
+      </div>
     </div>
   )
 }
