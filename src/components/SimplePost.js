@@ -14,7 +14,7 @@ function SimplePost({post, comments, fromList, dispatch, history}) {
       <p>{'timestamp: ' + new Date(post.timestamp).toLocaleString()}</p>
       <p>{'Vote score: ' + post.voteScore}</p>
       <p>{'Author: ' + post.author}</p>
-      { fromList && <p>{'comments number: ' + commentNumber}</p>}
+      <p>{'comments number: ' + commentNumber}</p>
       <div className='inner'>
         <Link to={`/post/${post.id}/edit`}><button className='btn-edit'></button></Link>
         <button className='btn-delete' onClick={()=>dispatch(deletePost(post.id, fromList?undefined: history))}></button>
