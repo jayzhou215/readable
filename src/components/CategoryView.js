@@ -6,7 +6,12 @@ import PostList from './PostList'
 
 function CategoryView(props) {
   const {categories, posts} = props
-  const curCategoryName = props.match.params.categoryName
+  const curCategoryName = props.match.params.category
+  if (!categories[curCategoryName]) {
+    return (
+      <p> no such category: {curCategoryName}</p>
+    )
+  }
   const curCategories = {}
   curCategories[curCategoryName] = categories[curCategoryName]
   const curPosts = posts && posts.filter((post) => {
