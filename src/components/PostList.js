@@ -2,15 +2,14 @@ import React, {Component} from 'react'
 import { trim, createUniqueKey } from '../utils/util'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { sortDecByVotescore, sortAecByVotescore, sortDecByTimestamp, sortAecByTimestamp } from '../post/actions'
+import * as actions from '../post/actions'
 import SimplePost from './SimplePost'
 
 class PostList extends Component {
 
   sortBy = (event) => {
     const value = event.target.value
-    const action = value.startsWith('vote_score') ? (value.endsWith('dec')? sortDecByVotescore() : sortAecByVotescore()) : (value.endsWith('dec') ? sortDecByTimestamp() : sortAecByTimestamp())
-    this.props.dispatch(action)
+    value.startsWith('vote_score') ? (value.endsWith('dec')? this.props.sortDecByVotescore() : this.props.sortAecByVotescore()) : (value.endsWith('dec') ? this.props.sortDecByTimestamp() : this.props.sortAecByTimestamp())
   }
 
   render(){
@@ -49,4 +48,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(PostList))
+export default withRouter(connect(mapStateToProps, actions)(PostList))

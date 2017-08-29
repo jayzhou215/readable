@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addPost, updatePost} from '../post/actions'
+import * as actions from '../post/actions'
 import {createUniqueKey, serialize} from '../utils/util'
 
 class CreatePostView extends Component {
@@ -27,9 +27,9 @@ class CreatePostView extends Component {
       curPost.title = post.title
       curPost.body = post.body
       curPost.category = post.category
-      this.props.dispatch(updatePost(curPost, this.props.history))
+      this.props.updatePost(curPost, this.props.history)
     } else {
-      this.props.dispatch(addPost(post, this.props.history))
+      this.props.addPost(post, this.props.history)
     }
   }
 
@@ -71,4 +71,4 @@ function mapStateToProps(state){
   }
 }
 
-export default withRouter(connect(mapStateToProps)(CreatePostView))
+export default withRouter(connect(mapStateToProps, actions)(CreatePostView))

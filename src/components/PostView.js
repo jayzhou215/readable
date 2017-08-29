@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addComment, getComments, deleteComment, voteComment, sortCommentByVoteScore, sortCommentByTimestamp, onEditComment, updateComment } from '../comment/actions'
+import * as actions from '../comment/actions'
 import { createUniqueKey, serialize, filterDeletedPostComments } from '../utils/util'
 import SimplePost from './SimplePost'
 
@@ -9,17 +9,17 @@ class PostView extends Component {
 
   componentDidMount() {
     const postId = this.props.match.params.postId
-    this.props.dispatch(getComments(postId))
+    this.props.getComments(postId)
   }
 
   sortBy = (event) => {
     const value = event.target.value
-    const action = (value === 'vote_score' ? sortCommentByVoteScore() : sortCommentByTimestamp())
-    this.props.dispatch(action)
+    value === 'vote_score' ? this.props.sortCommentByVoteScore() : this.props.sortCommentByTimestamp()
   }
 
   render() {
-    const {match, history, dispatch, posts, commentSort, commentOnEdit} = this.props
+    const {match, history, posts, commentSort, commentOnEdit} = this.props
+    const {addComment, updateComment} = this.props
     const postId = match.params.postId
     const newPosts = posts.filter((post) => {
       return post.id === postId
@@ -37,7 +37,7 @@ class PostView extends Component {
       event.preventDefault()
       const comment = serialize(event.target)
       if (comment.body) {
-        dispatch(addComment(post.id, comment.body))
+        addComment(post.id, comment.body)
         this.refs.body.value = ''
       }
     }
@@ -65,7 +65,7 @@ class PostView extends Component {
                       event.preventDefault()
                       const newComment = serialize(event.target)
                       if (newComment.body !== comment.body) {
-                        dispatch(updateComment(comment, newComment.body))
+                        updateComment(comment, newComment.body)
                       }
                     }}>
                     <input type='text' name='body' placeholder='input an comment' defaultValue={comment.body}/>
@@ -84,7 +84,7 @@ class PostView extends Component {
   }
 
   createCommentView = (comment) => {
-    const {dispatch} = this.props
+    const {onEditComment, deleteComment, voteComment} = this.props
     return (
       <li key={comment.id + createUniqueKey()} className='comment-item' >
         <p>{'body:' + comment.body}</p>
@@ -92,10 +92,10 @@ class PostView extends Component {
         <p>{'voteScore:' + comment.voteScore}</p>
         <p>{'last edit: ' + new Date(comment.timestamp).toLocaleString()}</p>
         <div className='inner'>
-          <button className='btn-edit' onClick={()=>dispatch(onEditComment(comment.id))}></button>
-          <button className='btn-delete' onClick={()=>dispatch(deleteComment(comment.id))}></button>
-          <button className='btn-vote-up' onClick={()=>dispatch(voteComment(comment.id, true))}></button>
-          <button className='btn-vote-down' onClick={()=>dispatch(voteComment(comment.id, false))}></button>
+          <button className='btn-edit' onClick={()=>onEditComment(comment.id)}></button>
+          <button className='btn-delete' onClick={()=>deleteComment(comment.id)}></button>
+          <button className='btn-vote-up' onClick={()=>voteComment(comment.id, true)}></button>
+          <button className='btn-vote-down' onClick={()=>voteComment(comment.id, false)}></button>
         </div>
 
       </li>
@@ -114,4 +114,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(PostView))
+export default withRouter(connect(mapStateToProps, actions)(PostView))
