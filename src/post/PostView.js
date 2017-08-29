@@ -44,7 +44,7 @@ class PostView extends Component {
     const comments = filterDeletedPostComments(post.id, this.props.comments)
     return (
       <div>
-        <a onClick={() => history.goBack()}  className='close'/>
+        <a onClick={() => history.goBack()}  className='close'>back</a>
         <SimplePost post={post}/>
         <form onSubmit={handleEvent}>
           <input type='text' name='body' placeholder='input an comment' ref='body'/>

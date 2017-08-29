@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CategoryList from './CategoryList'
 import PostList from '../post/PostList'
 
-class CategoryView {
+class CategoryView extends Component {
 
   render() {
     const {categories, posts} = this.props

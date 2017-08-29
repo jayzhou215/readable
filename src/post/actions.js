@@ -80,6 +80,7 @@ export function getAllPosts() {
       dispatch(sortDecByVotescore())
       data.map(post=>{
         dispatch(getComments(post.id))
+        return post
       })
     })
   }

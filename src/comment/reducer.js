@@ -1,5 +1,5 @@
 import * as ACTIONS from './actions'
-import {DELETE_POST, GET_ALL_POSTS} from '../post/actions'
+import {DELETE_POST} from '../post/actions'
 
 export function comments (state=[], action) {
   switch (action.type) {
@@ -10,6 +10,7 @@ export function comments (state=[], action) {
         if (!contains(newState, comment)) {
           newState = newState.concat(comment)
         }
+        return comment
       })
       return newState
     case ACTIONS.ADD_COMMENT:

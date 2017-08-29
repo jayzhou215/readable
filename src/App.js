@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { getAllCategory } from './category/actions'
 import { getAllPosts } from './post/actions'
-import { getAllComments } from './comment/actions'
 
 import CategoryList from './category/CategoryList'
 import {Switch, Route, withRouter, Link} from 'react-router-dom'
@@ -17,8 +16,8 @@ import PostView from './post/PostView'
 class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch(getAllCategory())
-    this.props.dispatch(getAllPosts())
+    this.props.getAllCategory()
+    this.props.getAllPosts()
   }
 
   render() {
@@ -47,11 +46,18 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const {categories, comments, posts} = state
+  const {categories, posts} = state
   return {
     categories,
     posts
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App))
+function mapDispatchToProps(dispatch) {
+  return {
+    getAllCategory :() => dispatch(getAllCategory()),
+    getAllPosts : () => dispatch(getAllPosts()),
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

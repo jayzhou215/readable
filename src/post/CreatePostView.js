@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import * as actions from '../post/actions'
 import {createUniqueKey, serialize} from '../utils/util'
@@ -34,12 +34,11 @@ class CreatePostView extends Component {
   }
 
   render() {
-    const {categories, posts, history} = this.props
-    const postId = this.props.match.params.postId
+    const {categories, history} = this.props
     const post = this.getCurPost()
     return (
       <div>
-        <a onClick={() => history.goBack()} className='close'/>
+        <a onClick={() => history.goBack()} className='close'> back </a>
         <form onSubmit={this.handleEvent} className='create-post-form'>
             <div className='create-post-details'>
               <input type='text' name='title' placeholder='title' defaultValue={post && post.title}/>

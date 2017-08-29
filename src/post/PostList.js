@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { trim, createUniqueKey } from '../utils/util'
+import { createUniqueKey } from '../utils/util'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../post/actions'
