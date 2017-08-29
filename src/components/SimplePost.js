@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { deletePost, votePost} from '../post/actions'
+import * as actions from '../post/actions'
 import { filterDeletedPostComments } from '../utils/util'
 
-function SimplePost({post, comments, fromList, dispatch, history}) {
+function SimplePost({post, comments, fromList, dispatch, history, deletePost, votePost}) {
   const postComments = filterDeletedPostComments(post.id, comments)
   const commentNumber = postComments.length
   return (
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(SimplePost))
+export default withRouter(connect(mapStateToProps, actions)(SimplePost))
