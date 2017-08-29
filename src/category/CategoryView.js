@@ -11,7 +11,7 @@ class CategoryView extends Component {
     const curCategoryName = this.props.match.params.category
     if (!categories[curCategoryName]) {
       return (
-        <p> no such category: {curCategoryName}</p>
+        <p> 404 error, no such category: {curCategoryName}</p>
       )
     }
     const curCategories = {}

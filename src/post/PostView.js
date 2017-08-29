@@ -28,7 +28,7 @@ class PostView extends Component {
       return (
         <div>
           <Link to='/' className='close'/>
-          <p>{'no such post for id ' + postId}</p>
+          <p>{'404 error, no such post for id ' + postId}</p>
         </div>
       )
     }
