@@ -4,31 +4,34 @@ import {connect} from 'react-redux'
 import CategoryList from './CategoryList'
 import PostList from '../post/PostList'
 
-function CategoryView(props) {
-  const {categories, posts} = props
-  const curCategoryName = props.match.params.category
-  if (!categories[curCategoryName]) {
+class CategoryView {
+
+  render() {
+    const {categories, posts} = this.props
+    const curCategoryName = this.props.match.params.category
+    if (!categories[curCategoryName]) {
+      return (
+        <p> no such category: {curCategoryName}</p>
+      )
+    }
+    const curCategories = {}
+    curCategories[curCategoryName] = categories[curCategoryName]
+    const curPosts = posts && posts.filter((post) => {
+      return post.category === curCategoryName
+    })
     return (
-      <p> no such category: {curCategoryName}</p>
+      <div>
+        <Link to='/' className='close'/>
+        <div>
+          <CategoryList categories={curCategories} useLink={false}></CategoryList>
+          <PostList posts={curPosts}></PostList>
+        </div>
+        <div className="add-post">
+          <Link to='/post/create' />
+        </div>
+      </div>
     )
   }
-  const curCategories = {}
-  curCategories[curCategoryName] = categories[curCategoryName]
-  const curPosts = posts && posts.filter((post) => {
-    return post.category === curCategoryName
-  })
-  return (
-    <div>
-      <Link to='/' className='close'/>
-      <div>
-        <CategoryList categories={curCategories} useLink={false}></CategoryList>
-        <PostList posts={curPosts}></PostList>
-      </div>
-      <div className="add-post">
-        <Link to='/post/create' />
-      </div>
-    </div>
-  )
 }
 
 function mapStateToProps(state){
