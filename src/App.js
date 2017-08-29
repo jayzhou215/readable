@@ -6,13 +6,13 @@ import { getAllCategory } from './category/actions'
 import { getAllPosts } from './post/actions'
 import { getAllComments } from './comment/actions'
 
-import CategoryList from './components/CategoryList'
+import CategoryList from './category/CategoryList'
 import {Switch, Route, withRouter, Link} from 'react-router-dom'
 import Error from './components/Error'
-import CategoryView from './components/CategoryView'
-import PostList from './components/PostList'
-import CreatePostView from './components/CreatePostView'
-import PostView from './components/PostView'
+import CategoryView from './category/CategoryView'
+import PostList from './post/PostList'
+import CreatePostView from './post/CreatePostView'
+import PostView from './post/PostView'
 
 class App extends Component {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import CategoryList from './CategoryList'
-import PostList from './PostList'
+import PostList from '../post/PostList'
 
 function CategoryView(props) {
   const {categories, posts} = props

@@ -17,9 +17,9 @@ function SimplePost({post, comments, fromList, dispatch, history, deletePost, vo
       <p>{'comments number: ' + commentNumber}</p>
       <div className='inner'>
         <Link to={`/post/${post.id}/edit`}><button className='btn-edit'></button></Link>
-        <button className='btn-delete' onClick={()=>dispatch(deletePost(post.id, fromList?undefined: history))}></button>
-        <button className='btn-vote-up' onClick={()=>dispatch(votePost(post.id, true))}></button>
-        <button className='btn-vote-down' onClick={()=>dispatch(votePost(post.id, false))}></button>
+        <button className='btn-delete' onClick={()=>deletePost(post.id, fromList?undefined: history)}></button>
+        <button className='btn-vote-up' onClick={()=>votePost(post.id, true)}></button>
+        <button className='btn-vote-down' onClick={()=>votePost(post.id, false)}></button>
       </div>
     </div>
   )
