@@ -1,5 +1,5 @@
 import * as API from '../utils/Api'
-import { createUniqueCommentId } from '../utils/Util'
+import { createUniqueCommentId } from '../utils/util'
 
 export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'

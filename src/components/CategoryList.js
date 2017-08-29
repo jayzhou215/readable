@@ -1,5 +1,5 @@
 import React from 'react'
-import {trim} from '../utils/Util'
+import {trim} from '../utils/util'
 import {Link} from 'react-router-dom'
 
 function CategoryList({categories, useLink}) {

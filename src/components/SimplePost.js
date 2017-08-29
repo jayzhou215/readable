@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { deletePost, votePost} from '../post/actions'
-import { filterDeletedPostComments } from '../utils/Util'
+import { filterDeletedPostComments } from '../utils/util'
 
 function SimplePost({post, comments, fromList, dispatch, history}) {
   const postComments = filterDeletedPostComments(post.id, comments)

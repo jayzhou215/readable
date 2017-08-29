@@ -1,5 +1,5 @@
 import * as API from '../utils/Api'
-import { createUniquePostId } from '../utils/Util'
+import { createUniquePostId } from '../utils/util'
 import { getComments } from '../comment/actions'
 
 export const GET_ALL_POSTS = 'GET_ALL_POSTS'

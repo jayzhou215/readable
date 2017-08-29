@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addComment, getComments, deleteComment, voteComment, sortCommentByVoteScore, sortCommentByTimestamp, onEditComment, updateComment } from '../comment/actions'
-import { createUniqueKey, serialize, filterDeletedPostComments } from '../utils/Util'
+import { createUniqueKey, serialize, filterDeletedPostComments } from '../utils/util'
 import SimplePost from './SimplePost'
 
 class PostView extends Component {

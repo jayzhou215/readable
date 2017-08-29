@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addPost, updatePost} from '../post/actions'
-import {createUniqueKey, serialize} from '../utils/Util'
+import {createUniqueKey, serialize} from '../utils/util'
 
 class CreatePostView extends Component {
 
